@@ -1,0 +1,40 @@
+<div class="container" *ngFor="let item of dataDorm">
+  <div class="containerA">
+    <div class="ItemAA">
+      <carousel
+        [cellWidth]="'100%'"
+        [height]="330"
+        [cellsToShow]="1"
+        [autoplay]="true"
+        [autoplayInterval]="3000"
+        [dots]="true"
+      >
+        <div class="carousel-cell" *ngFor="let itemImg of dataDormImage">
+          <img src="{{ itemImg }}" />
+        </div>
+      </carousel>
+    </div>
+    <div class="ItemAB">
+      <h1 style="font-size: 250%">{{ item.dorm_name }}</h1>
+      <h3 style="font-size: 150%">
+        ประเภท: {{ item.category }} โซน : {{ item.zone }}
+      </h3>
+      <h3 style="font-size: 150%">โทร: {{ item.tel }}</h3>
+      <h3 style="font-size: 150%">
+        Line: {{ item.line }} Facebook : {{ item.facebook }}
+      </h3>
+      <h3 style="font-size: 100%">ค่าเช่า</h3>
+      <h1 style="font-size: 300%; text-align: right">{{ item.price }} บาท</h1>
+    </div>
+  </div>
+  <div class="containerB">
+    <div class="ItemBA">
+      <div style="padding: 1%">
+        <h3 style="font-size: 150%">เพิ่มเติม</h3>
+        <p>
+          {{ item.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
