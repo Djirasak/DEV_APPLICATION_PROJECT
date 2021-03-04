@@ -1,0 +1,75 @@
+.container {
+  margin-top: 10vh;
+  width: 100vw;
+  height: 30vh;
+  background: url("../../assets/bgc.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: top;
+  overflow: hidden;
+  color: #ff5733;
+}
+.headT {
+  margin-top: 2vh;
+  margin-left: 20vw;
+  font-size: 250%;
+}
+.inpBox[type="text"] {
+  width: 50vw;
+  height: 5vh;
+  margin-top: -2vw;
+  margin-left: 25vw;
+  border: 5px solid #900c3f;
+  border-radius: 30px;
+  font-size: large;
+  text-align: center;
+}
+.inpBox[type="text"]:focus {
+  color: #ff5733;
+}
+.btn {
+  margin-top: 2vh;
+  width: 10vw;
+  height: 5vh;
+  color: #fff;
+  border-radius: 30px;
+  background-color: #ff5733;
+  margin-left: 45vw;
+  text-align: center;
+  font-size: larger;
+  cursor: pointer;
+}
+.qr {
+  width: 20%;
+  height: 20%;
+}
+.divqr {
+  margin-top: 3vh;
+  text-align: center;
+  width: 100vw;
+  color: #ff5733;
+}
+.notFound {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 3%;
+  width: auto;
+  padding: 2%;
+  text-align: center;
+  font-size: 250%;
+  color: #ff5733;
+}
+.Found {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 3%;
+  width: auto;
+  padding: 2%;
+  text-align: center;
+  color: #ff5733;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,111 @@
+<div class="container">
+  <h1 class="headT">TRACK & TRACE</h1>
+  <input
+    type="text"
+    maxlength="13"
+    class="inpBox"
+    required
+    placeholder="ระบุหมายเลขพัสดุ 13 หลัก"
+    [(ngModel)]="inpTrackNo"
+  />
+  <div class="btn" (click)="submitGetdata(inpTrackNo)">ติดตาม</div>
+</div>
+<div *ngIf="showTrack == 'emtry'">
+  <div class="divqr">
+    <img class="qr" src="../../assets/qr.png" />
+    <h3>สามารถใช้งาน คาที่ เอ็กซ์เพรส แอปพลิเคชั่นได้ที่นี่</h3>
+  </div>
+</div>
+<div class="result" *ngIf="showTrack == 'null'">
+  <div class="notFound"><h2>ไม่พบข้อมูล</h2></div>
+</div>
+<div class="result" *ngIf="showTrack == 'have'">
+  <div class="Found">
+    <h1>Tracking Number : {{ DataTrack.msg[0].track_no }}</h1>
+    <div
+      *ngFor="
+        let itemSTS of DataTrack.msg[0].shipmentStatus.reverse();
+        let k = index
+      "
+    >
+      <div *ngIf="k == 0">
+        <h3>Status shipment : {{ itemSTS.status }}</h3>
+      </div>
+    </div>
+
+    <div class="user">
+      <div>
+        <h2 style="text-align: left">ผู้ส่ง</h2>
+        <h1>{{ DataTrack.msg[0].s_name }}</h1>
+      </div>
+      <div style="padding-top: 4%">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="#ff5733"
+        >
+          <path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" />
+        </svg>
+      </div>
+      <div>
+        <h2 style="text-align: left">ผู้รับ</h2>
+        <h1>{{ DataTrack.msg[0].r_name }}</h1>
+      </div>
+    </div>
+    <div
+      class="timeline"
+      *ngFor="let item of DataTrack.msg[0].shipment.reverse(); let i = index"
+    >
+      <div *ngIf="i == 0">
+        <div>
+          <h2>
+            <svg
+              width="24"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M5 18h-1c-.552 0-1-.448-1-1v-2h12v-9h4.667c1.117 0 1.6.576 1.936 1.107.594.94 1.536 2.432 2.109 3.378.188.312.288.67.288 1.035v4.48c0 1.121-.728 2-2 2h-1c0 1.656-1.344 3-3 3s-3-1.344-3-3h-4c0 1.656-1.344 3-3 3s-3-1.344-3-3zm3-1.2c.662 0 1.2.538 1.2 1.2 0 .662-.538 1.2-1.2 1.2-.662 0-1.2-.538-1.2-1.2 0-.662.538-1.2 1.2-1.2zm10 0c.662 0 1.2.538 1.2 1.2 0 .662-.538 1.2-1.2 1.2-.662 0-1.2-.538-1.2-1.2 0-.662.538-1.2 1.2-1.2zm-10-8.8h-8v-2h8v-1h-5v-1c0-.552.448-1 1-1h9c.552 0 1 .448 1 1v10h-11v-3h-2v-2h7v-1zm9 0v3h4.715l-1.427-2.496c-.178-.312-.509-.504-.868-.504h-2.42z"
+              />
+            </svg>
+            : <span>{{ item.location }}</span>
+          </h2>
+        </div>
+      </div>
+      <div *ngIf="i != 0">
+        <div>
+          <h1 style="margin-top: -1%; margin-bottom: -1%">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"
+              />
+            </svg>
+          </h1>
+          <h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="green"
+            >
+              <path
+                d="M21.856 10.303c.086.554.144 1.118.144 1.697 0 6.075-4.925 11-11 11s-11-4.925-11-11 4.925-11 11-11c2.347 0 4.518.741 6.304 1.993l-1.422 1.457c-1.408-.913-3.082-1.45-4.882-1.45-4.962 0-9 4.038-9 9s4.038 9 9 9c4.894 0 8.879-3.928 8.99-8.795l1.866-1.902zm-.952-8.136l-9.404 9.639-3.843-3.614-3.095 3.098 6.938 6.71 12.5-12.737-3.096-3.096z"
+              />
+            </svg>
+            : <span>{{ item.location }}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
