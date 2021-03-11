@@ -2,4 +2,56 @@
 GET http://localhost:5000/ HTTP/1.1
 
 ###
+//Renew token
+POST http://localhost:5000/token HTTP/1.1
+Content-Type: application/json
 
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJVMDAwMSIsImZpcnN0X25hbWUiOiLguIjguLTguKPguKjguLHguIHguJTguLTguYwiLCJsYXN0X25hbWUiOiLguJTguYnguKfguIfguITguLPguIjguLHguJnguJfguKPguYwiLCJlbWFpbCI6IjQuMS5qaXJhc2FrQGdtYWlsLmNvbSIsInRlbCI6IjA5NDA3OTYxNzMiLCJhZGRyZXNzIjoiMjk2IOC4oS43IOC4lS7guYHguKHguYjguYDguKHguLLguLAg4LitLuC5geC4oeC5iOC5gOC4oeC4suC4sCDguIgu4Lil4Liz4Lib4Liy4LiHIDUyMjIwIiwicm9vbV9ubyI6Ijk5MDEiLCJpYXQiOjE2MTU0ODg1MTl9.FtLxstJapsdK1gSbtwaZDUbJeXU4kBAu4eQ46fVA-fA"
+}
+
+###
+//login
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"4.1.jirasak@gmail.com",
+    "password":"abcdfe054"
+}
+
+###
+//Create user
+POST http://localhost:5000/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "uid":"U0001",
+    "password":"abcdfe054",
+    "first_name":"จิรศักดิ์",
+    "last_name":"ด้วงคำจันทร์",
+    "email":"4.1.jirasak@gmail.com",
+    "tel":"0940796173",
+    "address":"296 ม.7 ต.แม่เมาะ อ.แม่เมาะ จ.ลำปาง 52220",
+    "room_no":"9901"
+
+}
+
+###
+//DELETE USER
+DELETE http://localhost:5000/user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJVMDAwMSIsImVtYWlsIjoiNC4xLmppcmFzYWtAZ21haWwuY29tIiwidGVsIjoiMDk0MDc5NjE3MyIsImFkZHJlc3MiOiIyOTYg4LihLjcg4LiVLuC5geC4oeC5iOC5gOC4oeC4suC4sCDguK0u4LmB4Lih4LmI4LmA4Lih4Liy4LiwIOC4iC7guKXguLPguJvguLLguIcgNTIyMjAiLCJyb29tX25vIjoiOTkwMSIsImlhdCI6MTYxNTQ4ODcyMCwiZXhwIjoxNjE1NDg4NzQwfQ.dncjzUyFNWpGiSSZvKLuWQVSQHeGBhLwq4VfuGVVyjA
+
+###
+//UPDATE USER
+PUT http://localhost:5000/user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJVMDAwMSIsImVtYWlsIjoiNC4xLmppcmFzYWtAZ21haWwuY29tIiwidGVsIjoiMDk0MDc5NjE3MyIsImFkZHJlc3MiOiIyOTYg4LihLjcg4LiVLuC5geC4oeC5iOC5gOC4oeC4suC4sCDguK0u4LmB4Lih4LmI4LmA4Lih4Liy4LiwIOC4iC7guKXguLPguJvguLLguIcgNTIyMjAiLCJyb29tX25vIjoiMTEwOSIsImlhdCI6MTYxNTQ5MjMzMywiZXhwIjoxNjE1NDk1OTMzfQ.WXCSmP00KPAmGCguQFV2QqHRfXlfsbxontcba7pLFKI
+Content-Type: application/json
+
+{
+    "first_name":"จิรศักดิ์",
+    "last_name":"ด้วงคำจันทร์",
+    "tel":"0940796173",
+    "address":"296 ม.7 ต.แม่เมาะ อ.แม่เมาะ จ.ลำปาง 52220",
+    "room_no":"1109"
+}
