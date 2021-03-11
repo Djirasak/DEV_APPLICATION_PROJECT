@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  url = 'http://localhost:3000/';
+  url = 'http://149.28.146.146/';
   constructor(private http: HttpClient) {}
   getShipmentWithID(track_id: string) {
     return this.http.get(this.url + 'shipment/' + track_id);

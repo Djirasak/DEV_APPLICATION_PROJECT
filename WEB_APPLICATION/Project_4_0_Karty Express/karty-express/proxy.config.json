@@ -1,6 +1,6 @@
 {
     "/": {
-    "target": "http://localhost:3000",
+    "target": "http://149.28.146.146",
     "secure": false
   }
 }
