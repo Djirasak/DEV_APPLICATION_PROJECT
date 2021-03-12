@@ -72,25 +72,68 @@ app.get('/', (req, res) => {
         }
     });
 });
-let refreshTokens = [];
+//let refreshTokens = [];
+function pushRefreshToken(RToken) {
+    var conn = database();
+    const sql = "CALL pushToken(?);";
+    conn.query(sql, [RToken], (err) => {
+        if (err) {
+            console.log("Error: ", err);
+            conn.end();
+        }
+        conn.end();
+    })
+}
+function popRefreshToken(RToken) {
+    var conn = database();
+    const sql = "CALL popToken(?);";
+    conn.query(sql, [RToken], (err) => {
+        if (err) {
+            console.log("Error: ", err);
+            conn.end();
+        }
+        conn.end();
+    })
+}
 //Renew Access token
 app.post('/token', (req, res) => {
+    var conn = database();
+    const sql = "CALL findToken(?);";
     const refreshToken = req.body.token;
     if (refreshToken == null) {
         return res.sendStatus(401);
     }
-    if (!refreshTokens.includes(refreshToken)) {
-        return res.sendStatus(403);
+    else {
+        conn.query(sql, [refreshToken], (err,rows) => {
+            if (err) {
+                console.log("Error: ", err);
+                conn.end();
+            } else {
+                const n_token = rows[0][0].counttoken
+                conn.end();
+                console.log("n_token : ",n_token);
+                if (n_token==0) {
+                    return res.sendStatus(403);
+                } else {
+                    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
+                        if (err) {
+                            return res.sendStatus(403);
+                        }else{
+                            const accessToken = generateAccessToken(data);
+                            console.log("Refresh token successfully!");
+                            res.send({ status: 'success', data: { accessToken: accessToken} });
+                        }
+                    });
+                }
+            }
+        });
     }
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
-        if (err) {
-            return res.sendStatus(403);
-        }else{
-            const accessToken = generateAccessToken(data);
-            console.log("Refresh token successfully!");
-            res.send({ status: 'success', data: { accessToken: accessToken} });
-        }
-    });
+});
+//USER Logout
+app.delete('/logout', (req, res) => {
+    const refreshToken = req.body.token
+    popRefreshToken(refreshToken);
+    res.sendStatus(204);
 });
 //USER LOGIN
 app.post('/login', (req, res) => {
@@ -137,7 +180,8 @@ app.post('/login', (req, res) => {
                     const accessToken = generateAccessToken(OBJ[0]);
                     const refreshToken = jwt.sign(OBJ[0],process.env.REFRESH_TOKEN_SECRET);
                     console.log({ accessToken: accessToken, refreshToken: refreshToken });
-                    refreshTokens.push(refreshToken);
+                    //refreshTokens.push(refreshToken);
+                    pushRefreshToken(refreshToken);
                     res.send({ status: 'success', token: { accessToken: accessToken, refreshToken: refreshToken } });
                 } else {
                     conn.end(); 
@@ -224,7 +268,8 @@ app.put('/user', authenticateToken, (req, res) => {
             const accessToken = generateAccessToken(OBJ);
             const refreshToken = jwt.sign(OBJ,process.env.REFRESH_TOKEN_SECRET);
             console.log({ accessToken: accessToken, refreshToken: refreshToken });
-            refreshTokens.push(refreshToken);
+            //refreshTokens.push(refreshToken);
+            pushRefreshToken(refreshToken);
             res.send({ status: 'success', token: { accessToken: accessToken, refreshToken: refreshToken } });
         }
     });
