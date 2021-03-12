@@ -5,6 +5,7 @@ const bodyparser = require('body-parser')
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cron = require("node-cron");
 
 function database(){
     return mysql.createConnection({
@@ -15,6 +16,19 @@ function database(){
     charset: process.env.DB_CHARSET,
   });
 }
+
+cron.schedule("* 1 * * *", function() {
+    var conn = database();
+    const sql = "CALL resetLogToken(?);"
+    conn.query(sql, [1], (err) => {
+        if (err) {
+            conn.end();
+            console.log(err);
+        }
+        conn.end();
+        console.log("🔥🔥🔥 Working ResetToken Cron-job!! 🔥🔥🔥");
+    });
+});
 
 const app = express();
 app.use(cors());
