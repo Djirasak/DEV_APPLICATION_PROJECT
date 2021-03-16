@@ -62,51 +62,22 @@ Content-type: application/json
     "tel" : "0894339804"
 }
 
-//RESTAURANT AUTHENTICATION
-//Renew token
-POST http://localhost:4000/retuarant/token HTTP/1.1
-content-type: application/json
-
-{
-    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDAwMSIsImZpcnN0X25hbWUiOiLguIjguLTguKPguKjguLHguIHguJTguLTguYwiLCJsYXN0X25hbWUiOiLguJTguYnguKfguIfguITguLPguIjguLHguJnguJfguKPguYwiLCJFbWFpbCI6IjQuMS5qaXJhc2FrQGdtYWlsLmNvbSIsInRlbCI6IjA5NDA3OTYxNzMiLCJpYXQiOjE2MTUzMTg1MTB9.eapjEkQoKWAzuYIcjTyPKxc5UGzaySlm1IwffAWxjvA"
-}
 ###
-//User Login
-POST http://localhost:4000/retuarant/login/ HTTP/1.1
+//Create Restaurant
+POST http://localhost:4000/restaurant/ HTTP/1.1
 content-type: application/json
 
 {
+    "rid" : "00001",
+    "restaurant_name" : "USIT",
+    "first_name" : "จิรศักดิ์",
+    "last_name" : "ด้วงคำจันทร์",
+    "tel" : "0940796173",
     "email" : "4.1.jirasak@gmail.com",
+    "address" : "EN, Faculty of engineering",
+    "minperq" : "1",
+    "maxperq" : "6",
+    "qperday" : "13",
+    "description" : "Coffee Bar and Sleeping Zone for Hangerman.",
     "password" : "abcdfe054"
-}
-###
-//User Logout
-DELETE http://localhost:4000/retuarant/logout/ HTTP/1.1
-content-type: application/json
-
-{
-    //refresh Token
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDAwMSIsImZpcnN0X25hbWUiOiLguIjguLTguKPguKjguLHguIHguJTguLTguYwiLCJsYXN0X25hbWUiOiLguJTguYnguKfguIfguITguLPguIjguLHguJnguJfguKPguYwiLCJFbWFpbCI6IjQuMS5qaXJhc2FrQGdtYWlsLmNvbSIsInRlbCI6IjA4OTcwMTkwMjAiLCJpYXQiOjE2MTUzMjA4ODR9.n9HT5FkdP78gyY0VIq7dYpr-yD8opY6f5EKdaZSNefw"
-}
-###
-//Create user
-POST http://localhost:4000/retuarant/ HTTP/1.1
-content-type: application/json
-
-{
-    
-}
-###
-//Delete user
-DELETE http://localhost:4000/retuarant/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDAwMSIsImZpcnN0X25hbWUiOiLguIjguLTguKPguKjguLHguIHguJTguLTguYwiLCJsYXN0X25hbWUiOiLguJTguYnguKfguIfguITguLPguIjguLHguJnguJfguKPguYwiLCJFbWFpbCI6IjQuMS5qaXJhc2FrQGdtYWlsLmNvbSIsInRlbCI6IjA5NDA3OTYxNzMiLCJpYXQiOjE2MTUzMTg3MzksImV4cCI6MTYxNTMxODc1OX0.mIjtpCGqGfpltJq0HxHrmJJk6ceE1GipASb7uJBXywY
-
-###
-//Update user
-PUT http://localhost:4000/retuarant/ HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDAwMSIsImZpcnN0X25hbWUiOiLguIjguLTguKPguKjguLHguIHguJTguLTguYwiLCJsYXN0X25hbWUiOiLguJTguYnguKfguIfguITguLPguIjguLHguJnguJfguKPguYwiLCJFbWFpbCI6IjQuMS5qaXJhc2FrQGdtYWlsLmNvbSIsInRlbCI6IjA4OTcwMTkwMjAiLCJpYXQiOjE2MTUzMjA4ODQsImV4cCI6MTYxNTMyNDQ4NH0.jIPzGmMU8pdArd7hR7hgPywt7thYcF2g9CopByc_K_k
-
-{
-    
 }
