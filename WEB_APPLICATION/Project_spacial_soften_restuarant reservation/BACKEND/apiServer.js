@@ -42,6 +42,99 @@ function authenticateToken(req, res, next) {
     });
     
 }
+app.get('/', (req, res) => {
+    var conn = database();
+    conn.connect((err) => {
+        if (err) {
+            res.send({status:"fail",msg:err});
+            conn.end();
+        }
+        res.send({ status: "ok", msg: "Connected database successfully!" });
+        conn.end();
+    });
+});
+app.get('/restaurant', (req, res) => {
+    var conn = database();
+    const sql = "SELECT * FROM restaurant;";
+    conn.query(sql, (err, rows) => {
+        if (err) {
+            console.log("Error: ", err);
+            res.status(400);
+            res.send({ status: 'fail', msg: err });
+            conn.end();
+        } else {
+            const OBJ = rows.map((row) => {
+                return {
+                    rid: row.rid,
+                    restaurant_name: row.name,
+                    address: row.address,
+                    description: row.description
+                }
+            });
+            //OBJ=[{},{},{},{},{},{}]
+            conn.end();
+            res.send({ status:"success",data:OBJ});
+        }
+    });
+});
+app.get('/restaurant/:rid',authenticateToken, (req, res) => {
+    var conn = database();
+    const rid = req.params.rid;
+    const sql = "SELECT * FROM restaurant WHERE rid=?;";
+    conn.query(sql,[rid], (err, rows) => {
+        if (err) {
+            console.log("Error: ", err);
+            res.status(400);
+            res.send({ status: 'fail', msg: err });
+            conn.end();
+        } else {
+            const OBJ = rows.map((row) => {
+                return {
+                    rid : row.rid,
+                    first_name: row.fname,
+                    last_name: row.lname,
+                    restaurant_name: row.name,
+                    email: row.email,
+                    tel: row.tel,
+                    address: row.address,
+                    description: row.description,
+                    minperq: row.minperq,
+                    maxperq: row.maxperq,
+                    qperday: row.qperday
+                }
+            });
+            //OBJ=[{},{},{},{},{},{}]
+            conn.end();
+            res.send({ status:"success",data:OBJ[0]});
+        }
+    });
+});
+app.get('/user', authenticateToken,(req, res) => {
+    var conn = database();
+    const uid = req.data.uid;
+    const sql = "SELECT * FROM user WHERE uid=?;";
+    conn.query(sql,[uid], (err, rows) => {
+        if (err) {
+            console.log("Error: ", err);
+            res.status(400);
+            res.send({ status: 'fail', msg: err });
+            conn.end();
+        } else {
+            const OBJ = rows.map((row) => {
+                return {
+                     uid : row.uid,
+                    first_name: row.fname,
+                    last_name: row.lname,
+                    email: row.email,
+                    tel : row.tel
+                }
+            });
+            //OBJ=[{},{},{},{},{},{}]
+            conn.end();
+            res.send({ status:"success",data:OBJ[0]});
+        }
+    });
+});
 app.listen(process.env.API_SERVER_PORT, process.env.HOST, () => {
     console.log(`🚀🚀🚀 AUTH SERVER RUNNING 🔥🔥🔥 http://${process.env.HOST}:${process.env.API_SERVER_PORT}`);
 });

@@ -120,7 +120,7 @@ app.post('/user/token', (req, res) => {
             } else {
                 const nToken = rows[0][0].numToken;
                 conn.end();
-                console.log("n_token : ", n_token);
+                console.log("n_token : ", nToken);
                 if (nToken==0) {
                     return res.sendStatus(403);
                 } else {
