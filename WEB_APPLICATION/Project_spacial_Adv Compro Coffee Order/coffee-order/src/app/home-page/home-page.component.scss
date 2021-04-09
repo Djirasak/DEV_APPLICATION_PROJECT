@@ -1,0 +1,29 @@
+.nav {
+  width: 80vw;
+  height: 40vh;
+  margin-top: 20vh;
+  margin-left: 10vw;
+  background-color: rgb(137, 216, 240);
+  border-radius: 20vw;
+  input {
+    text-align: center;
+    font-size: 200%;
+    width: 60vw;
+    margin-left: 10vw;
+    height: 10vh;
+    margin-top: 15vh;
+    border: none;
+    border-radius: 10px;
+  }
+  .btn {
+    text-align: center;
+    width: 30vw;
+    height: 5vh;
+    margin-left: 25vw;
+    margin-top: 5vh;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 200, 248);
+    cursor: pointer;
+  }
+}

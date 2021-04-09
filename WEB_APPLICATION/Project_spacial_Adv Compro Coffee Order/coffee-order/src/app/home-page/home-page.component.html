@@ -1,0 +1,11 @@
+<div class="nav">
+  <input
+    type="text"
+    placeholder="กรุณากรอกเลขโต๊ะ"
+    required
+    [(ngModel)]="TNumber"
+  />
+  <div class="btn" (click)="goto_menu(TNumber)"><h3>เลือกเมนู</h3></div>
+</div>
+<div *ngIf="!showMenu; else elseBlock"></div>
+<ng-template #elseBlock><app-menu></app-menu></ng-template>

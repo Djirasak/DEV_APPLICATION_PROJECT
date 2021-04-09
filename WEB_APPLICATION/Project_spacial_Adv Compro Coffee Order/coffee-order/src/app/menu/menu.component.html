@@ -1,0 +1,14 @@
+<div style="margin-top: 10vh">
+  <div *ngFor="let item_menu of menu">
+    <div class="menu">
+      <div class="itemmenuA">
+        {{ item_menu.name }}
+      </div>
+      <div class="itemmenuB">{{ item_menu.price }} บาท</div>
+      <div class="itemmenuC">จำนวน <input type="number" /></div>
+      <div class="itemmenuD">
+        <div class="btn">เพิ่ม</div>
+      </div>
+    </div>
+  </div>
+</div>

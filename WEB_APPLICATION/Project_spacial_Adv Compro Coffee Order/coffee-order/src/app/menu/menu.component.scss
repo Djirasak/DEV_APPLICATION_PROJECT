@@ -1,0 +1,30 @@
+.menu {
+  background-color: rgb(255, 213, 248);
+  border-radius: 20px;
+  width: 80vw;
+  height: 10vh;
+  padding: 1%;
+  margin-top: 3vh;
+  margin-left: 10vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .itemmenuA {
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0);
+  }
+  .itemmenuB {
+    width: 100px;
+    border: 1px solid rgba(0, 0, 0);
+  }
+  .itemmenuC {
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0);
+  }
+  .itemmenuD {
+    width: 50px;
+    border: 1px solid rgba(0, 0, 0);
+  }
+}

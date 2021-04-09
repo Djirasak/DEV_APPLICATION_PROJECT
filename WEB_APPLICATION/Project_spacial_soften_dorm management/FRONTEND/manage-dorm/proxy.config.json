@@ -1,0 +1,10 @@
+{
+    "/api": {
+    "target": "http://45.76.188.138:3000",
+    "secure": false
+  },
+  "/auth": {
+    "target": "http://45.76.188.138:5000",
+    "secure": false
+  }
+}
